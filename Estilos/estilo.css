@@ -1,0 +1,153 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+    background-color: lightblue;
+}
+
+header{
+background:#cdc614;
+color:rgb(233, 93, 7);
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav a{
+color:rgb(240, 40, 170);
+text-decoration:none;
+margin-left:15px;
+}
+
+.banner{
+background:#32b9cd;
+color:rgb(255, 255, 255);
+text-align:center;
+padding:80px 20px;
+}
+
+.destaque{
+    color:#c13cf1;
+    font-weight:bold;
+}
+
+.cards{
+display:flex;
+justify-content:center;
+gap:20px;
+padding:40px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+width:250px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+footer{
+background:#f68904;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.card img{
+    width:180px;
+    height:180px;
+    object-fit: contain;
+    border-radius:10px;
+    margin-bottom:15px;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.resultado{
+background:white;
+padding:50px;
+margin:20px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.resultado h2{
+text-align:center;
+margin-bottom:25px;
+color:#11d5bb;
+}
+
+.resultado p{
+margin-bottom:15px;
+line-height:1.6;
+text-align:justify;
+}
+
+.grafico-section{
+background:white;
+padding:40px 20px;
+text-align:center;
+}
+
+.grafico-section img{
+width:600px;
+max-width:100%;
+height:auto;
+margin-bottom:20px;
+}
+
+.grafico-section p{
+max-width:700px;
+margin:auto;
+line-height:1.6;
+font-weight:bold;
+}
+
+.escala-section{
+background:white;
+padding:40px 20px;
+text-align:center;
+}
+
+.escala-section img{
+width:300px;
+max-width:100%;
+height:auto;
+margin-bottom:20px;
+}
+
+.escala-section p{
+max-width:700px;
+margin:auto;
+line-height:1.6;
+font-weight:bold;
+}
+
+.conclusao-section{
+background:white;
+padding:40px 20px;
+text-align:center;
+}
+
+.conclusao-section img{
+width:350px;
+max-width:100%;
+height:auto;
+margin-bottom:20px;
+}
+
+.conclusao-section p{
+max-width:700px;
+margin:auto;
+line-height:1.6;
+font-weight:bold;
+}
+
