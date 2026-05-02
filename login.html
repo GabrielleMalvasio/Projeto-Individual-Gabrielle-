@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Corpo & Mente</title>
 <link rel="stylesheet" href="Estilos/estilo.css">
+</head>
+
+<body>
+
+<header>
+
+<h1 class="logo">
+<span class="vermelho">C</span>
+<span class="azul">o</span>
+<span class="azul">r</span>
+<span class="vermelho">p</span>
+<span class="azul">o</span><br>
+
+<span class="amarelo">&</span>
+
+<span class="vermelho">m</span>
+<span class="azul">e</span>
+<span class="azul">n</span>
+<span class="vermelho">t</span>
+<span class="azul">e</span>
+</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leitura.html">Leia para uma criança</a>
+<a href="login.html">Login</a>
+<a href="cadastro.html">Cadastro</a>
+</nav>
+
+</header>
+
+
+<section class="bannerLogin">
+
+<h2>Acesse sua conta</h2>
+
+<p>
+Entre com seus dados para continuar registrando
+as emoções das crianças durante as histórias.
+</p>
+
+</section>
+
+
+<section class="containerLogin">
+
+<div class="cardLogin">
+
+<h3>Login</h3>
+
+<input type="email" id="email_input" placeholder="E-mail">
+<input type="password" id="senha_input" placeholder="Senha">
+
+<button onclick="entrar()">Entrar</button>
+
+<p class="linkCadastro">
+Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a>
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+<p>Que tal ler para uma criança hoje?</p>
+</footer>
+
+</body>
+
+</html>
+<script>
+
+function entrar() {
+    aguardar();
+
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+
+    if (emailVar == "" || senhaVar == "") {
+        alert("Preencha todos os campos!");
+        finalizarAguardar();
+        return false;
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+fetch("http://localhost:3333/usuarios/autenticar", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+    })
+})
+    .then(function (resposta) {
+
+        console.log("Resposta do login:", resposta);
+
+        if (resposta.ok) {
+
+            resposta.json().then(json => {
+                console.log("Usuário logado:", json);
+
+                // guardar dados do usuário na sessão
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ID_USUARIO = json.id;
+
+                alert("Login realizado com sucesso!");
+
+                setTimeout(() => {
+                    window.location = "index.html";
+                }, 1000);
+
+            });
+
+        } else {
+            resposta.text().then(texto => {
+                console.error("Erro no login:", texto);
+                alert("E-mail ou senha inválidos");
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+        alert("Erro ao conectar com o servidor");
+    });
+
+    return false;
+}
+
+function aguardar() {
+    console.log("Carregando...");
+}
+
+function finalizarAguardar() {
+    console.log("Fim do carregamento");
+}
+
+</script>

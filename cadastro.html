@@ -1,2 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro | Corpo & Mente</title>
 <link rel="stylesheet" href="Estilos/estilo.css">
+</head>
 
+<body>
+
+<header>
+
+<h1 class="logo">
+<span class="vermelho">C</span>
+<span class="azul">o</span>
+<span class="azul">r</span>
+<span class="vermelho">p</span>
+<span class="azul">o</span><br>
+
+<span class="amarelo">&</span>
+
+<span class="vermelho">m</span>
+<span class="azul">e</span>
+<span class="azul">n</span>
+<span class="vermelho">t</span>
+<span class="azul">e</span>
+</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leitura.html">Leia para uma criança</a>
+<a href="login.html">Login</a>
+<a href="cadastro.html">Cadastro</a>
+</nav>
+
+</header>
+
+
+<section class="bannerCadastro">
+
+<h2>Crie sua conta</h2>
+
+<p>
+Cadastre o responsável e registre uma ou mais crianças
+para acompanhar emoções antes e depois das histórias.
+</p>
+
+</section>
+
+
+<section class="cardsCadastro">
+
+<div class="cardCadastro">
+
+<h3>Responsável</h3>
+
+<input type="text" id="nome_input" placeholder="Nome">
+<input type="text" id="sobrenome_input" placeholder="Sobrenome">
+<input type="email" id="email_input" placeholder="E-mail">
+
+<label>Data de nascimento</label>
+<input type="date">
+
+</div>
+
+
+<div class="cardCadastro">
+
+<h3>Criança</h3>
+
+<input type="text" placeholder="Nome da criança">
+
+<label>Data de nascimento</label>
+<input type="date">
+
+<label>Sexo biológico</label>
+
+<select>
+<option value="">Selecione</option>
+<option>Feminino</option>
+<option>Masculino</option>
+<option>Não escolher</option>
+</select>
+
+<button>Adicionar Criança</button>
+
+</div>
+
+<div class="cardCadastro">
+
+<h3>Segurança</h3>
+
+<input type="password" id="senha_input" placeholder="Crie uma senha">
+
+<p class="textoCadastro">
+Use no mínimo 8 caracteres com letra maiúscula,
+minúscula, número e símbolo.
+</p>
+
+<button onclick="cadastrar()">Criar Conta</button>
+
+</div>
+
+</section>
+
+
+<section class="infoCadastro">
+
+<h2>Como funciona</h2>
+
+<p>
+Uma conta pode registrar mais de uma criança.
+Cada criança terá seus próprios registros emocionais
+nas histórias disponíveis.
+</p>
+
+<p>
+As informações ficam vinculadas ao responsável
+que realizou o cadastro.
+</p>
+
+</section>
+
+
+<footer>
+<p>Que tal ler para uma criança hoje?</p>
+</footer>
+
+<script>
+
+function cadastrar() {
+
+    var nome = nome_input.value;
+    var sobrenome = sobrenome_input.value;
+    var email = email_input.value;
+    var senha = senha_input.value;
+
+    if (nome == "" || sobrenome == "" || email == "" || senha == "") {
+        alert("Preencha todos os campos do responsável");
+        return false;
+    }
+
+    fetch("http://localhost:3333/usuarios/cadastrar", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        nomeServer: nome,
+        sobrenomeServer: sobrenome,
+        emailServer: email,
+        senhaServer: senha
+    })
+})
+.then(function (resposta) {
+
+    if (resposta.ok) {
+        alert("Cadastro realizado com sucesso!");
+        window.location = "login.html";
+    } else {
+        resposta.text().then(texto => {
+            console.log(texto);
+            alert("Erro ao cadastrar usuário");
+        });
+    }
+
+}).catch(function (erro) {
+    console.log(erro);
+    alert("Erro de conexão com o servidor");
+});
+
+}
+
+</script>
+
+</body>
+</html>
