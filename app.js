@@ -12,6 +12,8 @@ console.log("DB_PASSWORD:", process.env.DB_PASSWORD);
 
 // IMPORTA ROTAS
 const usuarioRouter = require("./src/routes/usuarios");
+const votoRouter = require("./src/routes/voto");
+const criancaRouter = require("./src/routes/crianca");
 
 // MIDDLEWARES
 app.use(express.json());
@@ -23,6 +25,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // ROTAS
 app.use("/usuarios", usuarioRouter);
+app.use("/voto", votoRouter);
+app.use("/crianca", criancaRouter);
 
 // PORTA
 const PORT = process.env.APP_PORT || 3333;

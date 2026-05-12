@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráficos - Corpo & Mente</title>
+
+    <link rel="stylesheet" href="Estilos/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card {
+            width: 80%;
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #FAFAF8;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 400px !important;
+        }
+
+        .containerDashboard {
+            margin-left: 150px; 
+        }
+
+        .sidebarDashboard {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 150px;
+            height: 100vh;
+            background: #32b9cd;
+            padding: 20px;
+            color: white;
+        }
+
+        .logoSidebar {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .voltarSite {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebarDashboard">
+
+    <div class="logoSidebar">
+        Corpo <br>
+        & Mente
+    </div>
+
+    <a href="dashboard.html" class="voltarSite">📊 KPIs</a>
+    <a href="graficos.html" class="voltarSite">📈 Gráficos</a>
+    <a href="index.html" class="voltarSite">⬅ Voltar ao site</a>
+    <a href="#" onclick="sairConta()" class="voltarSite">
+    🚪 Sair da conta
+</a>
+
+</div>
+
+
+<section class="containerDashboard">
+
+    <h1>Gráficos</h1>
+
+    <div class="card">
+        <canvas id="graficoVariacao"></canvas>
+    </div>
+
+    <div class="card">
+        <canvas id="graficoMedias"></canvas>
+    </div>
+
+</section>
+
+<script>
+
+
+if (!sessionStorage.ID_USUARIO) {
+    alert("Você precisa estar logado para acessar os gráficos.");
+    window.location = "login.html";
+}
+
+function sairConta() {
+    sessionStorage.clear();
+    alert("Você saiu da conta");
+    window.location = "login.html";
+}
+
+window.onload = function () {
+
+    
+    fetch("http://localhost:3333/voto/variacao")
+        .then(res => res.json())
+        .then(dados => {
+
+            let melhoraram = 0;
+            let pioraram = 0;
+            let iguais = 0;
+
+            for (let i = 0; i < dados.length; i++) {
+
+                let variacao = dados[i].variacao;
+                let total = Number(dados[i].total);
+
+                if (variacao == "Melhoraram") {
+                    melhoraram = total;
+                } else if (variacao == "Pioraram") {
+                    pioraram = total;
+                } else {
+                    iguais = total;
+                }
+            }
+
+            const ctx = document.getElementById("graficoVariacao");
+
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Melhoraram 😄", "Pioraram 😢", "Iguais 😐"],
+                    datasets: [{
+                        label: "Distribuição emocional",
+                        data: [melhoraram, pioraram, iguais],
+                        backgroundColor: ["#66cc99", "#ff6666", "#cccccc"]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Distribuição emocional"
+                        }
+                    }
+                }
+            });
+
+        });
+
+    
+    fetch("http://localhost:3333/voto/medias")
+        .then(res => res.json())
+        .then(dados => {
+
+            if (dados.length > 0) {
+
+                let mediaAntes = Number(dados[0].mediaAntes || 0);
+                let mediaDepois = Number(dados[0].mediaDepois || 0);
+
+                const ctxMedias = document.getElementById("graficoMedias");
+
+                new Chart(ctxMedias, {
+                    type: "bar",
+                    data: {
+                        labels: ["Antes 😐", "Depois 🙂"],
+                        datasets: [{
+                            label: "Média emocional",
+                            data: [mediaAntes, mediaDepois],
+                            backgroundColor: ["#ffcc66", "#66cc99"]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: "Média das emoções"
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 6
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* DASHBOARD */
+
+.kpisDashboard{
+
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:40px;
+justify-content:center;
+
+}
+
+.cardKpiDashboard{
+
+background:#FAFAF8;
+width:220px;
+padding:25px;
+border-radius:18px;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+text-align:center;
+
+}
+
+.numeroKpiDashboard{
+
+font-size:42px;
+color:#2F6F73;
+margin-bottom:10px;
+
+}
+
+.cardKpiDashboard {
+    background:#FAFAF8;
+    width:220px;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    text-align:center;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    
+}
+
+.cardKpiDashboard:hover {
+    transform: translateY(-6px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.textoKpiDashboard{
+
+font-size:16px;
+color:#555;
+
+}
+
+.containerDashboard{
+
+max-width:1200px;
+margin:0 auto;
+padding:40px 20px;
+margin-left: 200px;
+}
+
+
+
+.graficosContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 65px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.graficosContainer .card {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.sidebarDashboard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 110px;
+    background-color: #32b9cd;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.voltarSite {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.voltarSite:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.logoSidebar {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+}

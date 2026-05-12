@@ -32,6 +32,8 @@
 <a href="leitura.html">Leia para uma criança</a>
 <a href="login.html">Login</a>
 <a href="cadastro.html">Cadastro</a>
+<a href="dashboard.html">Dashboard</a>
+
 </nav>
 
 </header>
@@ -92,6 +94,8 @@ function entrar() {
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
+    console.log("USUARIO:", sessionStorage.ID_USUARIO);
+    
 
 fetch("http://localhost:3333/usuarios/autenticar", {
     method: "POST",
@@ -103,41 +107,49 @@ fetch("http://localhost:3333/usuarios/autenticar", {
         senhaServer: senhaVar
     })
 })
-    .then(function (resposta) {
+.then(function (resposta) {
 
-        console.log("Resposta do login:", resposta);
+    console.log("Resposta do login:", resposta);
 
-        if (resposta.ok) {
+    if (resposta.ok) {
 
-            resposta.json().then(json => {
-                console.log("Usuário logado:", json);
+        resposta.json().then(function (json) {
 
-                // guardar dados do usuário na sessão
-                sessionStorage.EMAIL_USUARIO = json.email;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
+            console.log("Usuário logado:", json);
 
-                alert("Login realizado com sucesso!");
+            // salvar usuário 
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.id;
+            sessionStorage.NOME_CRIANCA = json.nomeCrianca;
+            // OBS: não existe mais tabela criança.
+            // nomeCrianca está dentro de usuario, então não há ID_CRIANCA.
+            // remover qualquer referência antiga a ID_CRIANCA nos votos/dash.
 
-                setTimeout(() => {
-                    window.location = "index.html";
-                }, 1000);
+            alert("Login realizado com sucesso!");
 
-            });
+            setTimeout(() => {
+                window.location = "index.html";
+            }, 1000);
 
-        } else {
-            resposta.text().then(texto => {
-                console.error("Erro no login:", texto);
-                alert("E-mail ou senha inválidos");
-            });
-        }
+        });
 
-    }).catch(function (erro) {
-        console.log(erro);
-        alert("Erro ao conectar com o servidor");
-    });
+    } else {
 
-    return false;
+        resposta.text().then(function (texto) {
+            console.error("Erro no login:", texto);
+            alert("E-mail ou senha inválidos");
+        });
+
+    }
+
+})
+.catch(function (erro) {
+    console.log(erro);
+    alert("Erro ao conectar com o servidor");
+});
+
+return false;
 }
 
 function aguardar() {

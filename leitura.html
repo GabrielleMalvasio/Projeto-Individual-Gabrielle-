@@ -34,6 +34,8 @@
 <a href="leitura.html">Leia para uma criança</a>
 <a href="login.html">Login</a>
 <a href="cadastro.html">Cadastro</a>
+<a href="dashboard.html">Dashboard</a>
+
 </nav>
 
 </header>
@@ -55,7 +57,7 @@ das mudanças da vida.
 <br>
 
 <p class="destaqueLeitura">
-Cadastre-se e registre como a criança se sente antes e depois de ouvir cada história.
+Cadastre-se e registre como a criança se sente antes e depois de ouvir a história.
 </p>
 
 </section>
@@ -63,27 +65,33 @@ Cadastre-se e registre como a criança se sente antes e depois de ouvir cada his
 
 
 
+
 <section class="cardsLeitura">
+
   <div class="cardLeitura">
+
     <h3>Te Amo Pra Sempre, Pretinho</h3>
+
     <img src="assets/imagens/pretinho.jpg.png">
 
     <p>Uma história sobre amor, saudade e vínculos que continuam no coração.</p>
 
+    <!-- ANTES -->
     <section id="antesPretinho">
+
       <p><strong>Como você está se sentindo agora?</strong></p>
 
       <div class="escalaVotos">
-        <img src="assets/imagens/rosto1.jpg">
-        <img src="assets/imagens/rosto2.jpg">
-        <img src="assets/imagens/rosto3.jpg">
-        <img src="assets/imagens/rosto4.jpg">
-        <img src="assets/imagens/rosto5.jpg">
-        <img src="assets/imagens/rosto6.jpg">
+
+        <img src="assets/imagens/rosto1.jpg" onclick="votarAntes(1, 1)">
+        <img src="assets/imagens/rosto2.jpg" onclick="votarAntes(1, 2)">
+        <img src="assets/imagens/rosto3.jpg" onclick="votarAntes(1, 3)">
+        <img src="assets/imagens/rosto4.jpg" onclick="votarAntes(1, 4)">
+        <img src="assets/imagens/rosto5.jpg" onclick="votarAntes(1, 5)">
+        <img src="assets/imagens/rosto6.jpg" onclick="votarAntes(1, 6)">
+
       </div>
-    </section>
-  </div>
-</section>
+
 
 <section class="introLeitura">
   <h2>Te amo para sempre, Pretinho.</h2>
@@ -333,367 +341,57 @@ Pedrinho era um menino muito feliz. Antes de dormir, olhava pela janela do seu q
 </p>
 
   <section id="depoisPretinho">
-    <p><strong>Como você está se sentindo depois de ouvir a história?</strong></p>
 
-    <div class="escalaVotos">
-      <img src="assets/imagens/rosto1.jpg">
-      <img src="assets/imagens/rosto2.jpg">
-      <img src="assets/imagens/rosto3.jpg">
-      <img src="assets/imagens/rosto4.jpg">
-      <img src="assets/imagens/rosto5.jpg">
-      <img src="assets/imagens/rosto6.jpg">
-    </div>
-  </section>
-</section>
+  <p><strong>Como você está se sentindo depois de ouvir a história?</strong></p>
 
+  <div class="escalaVotos">
 
+    <img src="assets/imagens/rosto1.jpg" onclick="votarDepois(1, 1)">
+    <img src="assets/imagens/rosto2.jpg" onclick="votarDepois(1, 2)">
+    <img src="assets/imagens/rosto3.jpg" onclick="votarDepois(1, 3)">
+    <img src="assets/imagens/rosto4.jpg" onclick="votarDepois(1, 4)">
+    <img src="assets/imagens/rosto5.jpg" onclick="votarDepois(1, 5)">
+    <img src="assets/imagens/rosto6.jpg" onclick="votarDepois(1, 6)">
 
-
-<section class="cardsLeitura">
-  <div class="cardLeitura">
-    <h3>A Nota 10</h3>
-    <img src="assets/imagens/nota10.jpg.png">
-
-    <p>Uma história sobre aprendizado, autoestima e a verdadeira sabedoria.</p>
-
-    <section id="antesNota10">
-      <p><strong>Como você está se sentindo agora?</strong></p>
-
-      <div class="escalaVotos">
-        <img src="assets/imagens/rosto1.jpg">
-        <img src="assets/imagens/rosto2.jpg">
-        <img src="assets/imagens/rosto3.jpg">
-        <img src="assets/imagens/rosto4.jpg">
-        <img src="assets/imagens/rosto5.jpg">
-        <img src="assets/imagens/rosto6.jpg">
-      </div>
-    </section>
   </div>
+
 </section>
 
-<section class="introLeitura">
-  <h2>A Nota 10</h2>
+<button onclick="enviarVoto(1)">Enviar Voto</button>
 
-  <p>
-Era uma vez, uma linda e pequena cidade, cheia de colinas verdes e muito ensolarada. Nessa pequena cidade morava um menino que se chamava Pedrinho.
-</p>
 
-<p>
-Pedrinho estava na escola e estava muito triste. Ele havia acabado de receber sua prova e tirou nota zero.
-</p>
 
-<p>
-— Eu fiz todas as tarefinhas, todos os trabalhinhos e mesmo assim eu tirei nota zero. Estou tão triste. Como vou contar isso para minha mãe? — disse Pedrinho.
-</p>
 
-<p>
-Saindo da escola, Pedrinho foi até a casa do velho Jeremias, que ficava perto das margens do rio. Jeremias era um velho sábio e sempre tinha boas palavras para oferecer.
-</p>
 
-<p>
-Toc, toc. Bateu Pedrinho na casa do Jeremias.
-</p>
-
-<p>
-— Quem bate? — perguntou o velho.
-</p>
-
-<p>
-— Sou eu, Jeremias, o Pedrinho.
-</p>
-
-<p>
-— Olá, menino. Pode entrar. O que te traz aqui? — perguntou Jeremias.
-</p>
-
-<p>
-— Estou triste, Jeremias — disse Pedrinho. — Eu fiz todas as tarefinhas, fiz todos os trabalhinhos e tirei nota zero na prova! Estou me sentindo um menino que não sabe nada. Eu queria ser sábio como o senhor.
-</p>
-
-<p>
-— Você, Pedrinho — disse Jeremias — já é tão sábio quanto eu. Espere aqui um pouco que eu vou te mostrar.
-</p>
-
-<p>
-Eu, tão sábio quanto o velho Jeremias?, pensou Pedrinho. Não pode ser, impossível!
-</p>
-
-<p>
-Jeremias foi até a sua cozinha e voltou com uma maçã.
-</p>
-
-<p>
-— Que fruta eu tenho na minha mãe, Pedrinho?
-</p>
-
-<p>
-— Uma maçã, Jeremias — respondeu Pedrinho.
-</p>
-
-<p>
-— Tem certeza que essa fruta não é uma manga? — perguntou o velho.
-</p>
-
-<p>
-— Não, Jeremias. Você tem na sua mão uma maçã — respondeu Pedrinho.
-</p>
-
-<p>
-— E não pode ser uma pera? — perguntou mais uma vez Jeremias.
-</p>
-
-<p>
-— Não — disse Pedrinho. — Eu sei que o que você tem na sua mão é uma maçã e não pode ser nem uma pera e nem uma manga. Pois uma maçã é uma maçã e eu sei disso.
-</p>
-
-<p>
-— Muito bem — respondeu Jeremias. — Me espere aqui novamente.
-</p>
-
-<p>
-Jeremias foi até a cozinha, mas dessa vez, Jeremias voltou com uma caixa fechada e disse:
-</p>
-
-<p>
-— Pedrinho, nessa caixa tem uma fruta, qual é?
-</p>
-
-<p>
-— Não sei, Jeremias. Como eu posso saber? — respondeu Pedrinho.
-</p>
-
-<p>
-— Tente adivinhar, garoto. Que fruta tem nessa caixa? — disse Jeremias.
-</p>
-
-<p>
-— Jeremias, eu não consigo ver o que tem dentro da caixa. Não posso saber o que tem aí dentro. Pode ser tantas coisas. Pode ser uma maçã, uma banana, um limão. Tem muitas possibilidades!
-</p>
-
-<p>
-— Exatamente, Pedrinho — disse Jeremias. — Muitas possibilidades, assim como o zero. O zero não significa que você não sabe nada. Zero significa que você tem possibilidades infinitas de aprender.
-</p>
-
-<p>
-O número zero é um número poderoso. O zero ao lado do número 1 transforma o 1 em 10!
-</p>
-
-<p>
-Quando achamos que sabemos sobre alguma coisa — disse Jeremias — estamos limitados.
-</p>
-
-<p>
-Veja bem, quando você viu a maçã na minha mão, ela só poderia ser uma maçã. Ela não poderia ser nem uma manga e nem uma pera.
-</p>
-
-<p>
-Mas a fruta dentro da caixa que você ainda não sabe qual é, pode ser muitas frutas.
-</p>
-
-<p>
-Todos nós, Pedrinho, meninas e meninos, adultos e crianças, já somos sábios por natureza. Nós somos curiosos e temos o desejo de aprender, isso é sabedoria.
-</p>
-
-<p>
-Não saber não é nenhuma vergonha. Quando sabemos que não sabemos, isso significa que temos muitas e muitas coisas para descobrir e isso é muito legal!
-</p>
-
-<p>
-Olhe para o mundo, Pedrinho. Olhe o rio, olhe para o céu, olhe para a terra. Tantas coisas que não sabemos para serem descobertas!
-</p>
-
-<p>
-Pedrinho ficou muito feliz em saber que ele era sábio também e que ele tinha muitas coisas para descobrir sobre o mundo.
-</p>
-
-<p>
-Pedrinho voltou para a casa, mostrou a prova para sua mãe e eles estudaram novamente as atividades que Pedrinho sentia mais dificuldade.
-</p>
-
-<p>
-Pedrinho ficou animado em aprender tantas coisas novas. No outro dia, voltou à escola e fez a prova novamente. Dessa vez, Pedrinho tirou nota 10.
-</p>
-
-<p>
-Pedrinho ficou feliz em ver a sua nota 10. Mas estava mais feliz em saber de todas as coisas que ele ainda não sabia.
-</p>
-
-
-  <section id="depoisNota10">
-    <p><strong>Como você está se sentindo depois de ouvir a história?</strong></p>
-
-    <div class="escalaVotos">
-      <img src="assets/imagens/rosto1.jpg">
-      <img src="assets/imagens/rosto2.jpg">
-      <img src="assets/imagens/rosto3.jpg">
-      <img src="assets/imagens/rosto4.jpg">
-      <img src="assets/imagens/rosto5.jpg">
-      <img src="assets/imagens/rosto6.jpg">
-    </div>
-  </section>
-</section>
-
-
-
-<section class="cardsLeitura">
-  <div class="cardLeitura">
-    <h3>Os Peixinhos</h3>
-    <img src="assets/imagens/OsPeixinhos.jpg.png">
-
-    <p>Uma história sobre compaixão, atitude e o impacto de pequenas ações.</p>
-
-    <section id="antesPeixinhos">
-      <p><strong>Como você está se sentindo agora?</strong></p>
-
-      <div class="escalaVotos">
-        <img src="assets/imagens/rosto1.jpg">
-        <img src="assets/imagens/rosto2.jpg">
-        <img src="assets/imagens/rosto3.jpg">
-        <img src="assets/imagens/rosto4.jpg">
-        <img src="assets/imagens/rosto5.jpg">
-        <img src="assets/imagens/rosto6.jpg">
-      </div>
-    </section>
-  </div>
-</section>
-
-<section class="introLeitura">
-  <h2>Os Peixinhos</h2>
-
-  <p>
-Era uma vez um menino chamado Pedrinho. Pedrinho morava em uma linda e pequena cidade, muito ensolarada e cheia de colinas verdes.
-</p>
-
-<p>
-Perto da casa onde Pedrinho morava, havia um rio. Era um rio bem bonito, com águas clarinhas, e as margens não eram muito distantes uma da outra.
-</p>
-
-<p>
-As águas desse rio eram sempre bem calmas, mas houve uma vez em que tudo ficou muito diferente!
-</p>
-
-<p>
-Houve uma forte chuva em toda a região. O rio ficou muito cheio e suas águas transbordaram para além de suas margens, inundando as plantas que tinham ao seu redor.
-</p>
-
-<p>
-Dias depois, as águas secaram e voltaram ao tamanho normal do rio. Porém, quando as águas voltaram para as margens habituais do rio, muitos peixinhos não voltaram junto com a água. E os peixinhos ficaram se debatendo na terra, sem água para poderem respirar.
-</p>
-
-<p>
-Quando Pedrinho soube que muitos peixinhos estavam morrendo fora da água, ele correu até o rio para ajudar.
-</p>
-
-<p>
-Quando Pedrinho chegou nas margens do rio, ele ficou bem preocupado. Havia tantos peixinhos fora da água quanto estrelas no céu em uma noite estrelada.
-</p>
-
-<p>
-Pedrinho sabia que sozinho jamais conseguiria ajudar todos os peixinhos.
-</p>
-
-<p>
-Ainda assim, sem tempo a perder, Pedrinho levantou as mangas de sua blusa e começou a jogar, depressa, todos os peixinhos que ele podia de volta na água do rio.
-</p>
-
-<p>
-Era um trabalho cansativo, mas Pedrinho estava tão envolvido em ajudar os peixinhos que não se sentia cansado.
-</p>
-
-<p>
-Quando passou um homem por lá e, vendo Pedrinho trabalhar tanto, ele disse:
-</p>
-
-<p>
-— Menino, não vê que é impossível ajudar todos esses peixes? Por que ter tanto trabalho? Mesmo que você passe o dia todo jogando os peixinhos na água, seu trabalho é inútil, não faz diferença. A maioria dos peixinhos você nunca poderá ajudar.
-</p>
-
-<p>
-Ao ouvir o que o homem disse, Pedrinho parou por um instante, se levantou, olhou para o homem e disse:
-</p>
-
-<p>
-— Está vendo esse peixinho? — disse Pedrinho, levantando suas mãos e mostrando um peixinho para o homem. — Para ele faz toda a diferença!
-</p>
-
-<p>
-E jogou o peixinho para dentro da água.
-</p>
-
-<p>
-O homem, ao ouvir o que Pedrinho disse, ficou muito envergonhado. Ele entendeu que Pedrinho sabia que não podia ajudar todos os peixinhos, mas que, mesmo que ele pudesse ajudar apenas um, ajudaria com o mesmo entusiasmo e compaixão como se pudesse ajudar todos os outros.
-</p>
-
-<p>
-Percebendo o grande coração de Pedrinho, o homem disse:
-</p>
-
-<p>
-— Menino, você tem toda razão. Para esse peixinho, seu trabalho e seu grande coração fazem toda a diferença! Como eu posso ajudar você?
-</p>
-
-<p>
-— Vá até a cidade — disse Pedrinho. — Vá até a pracinha, meus amigos sempre jogam bola lá. Chame todos eles para ajudar a gente!
-</p>
-
-<p>
-Assim fez o homem. Ele foi até a pracinha da cidade e chamou todos os amigos de Pedrinho para ajudarem a salvar os peixinhos.
-</p>
-
-<p>
-Pouco tempo depois, havia muitas pessoas ajudando, pegando os peixinhos e devolvendo-os para a água. No final do dia, todos os peixinhos foram salvos.
-</p>
-
-<p>
-Ao final do dia, as pessoas estavam bem cansadas, porém muito felizes. Nada deixa a gente mais feliz do que ajudar os seres, sejam seres humanos, bichinhos ou plantinhas.
-</p>
-
-<p>
-Para cada serzinho que ajudamos a ser mais feliz, a nossa vida também fica mais feliz. E toda vida importa, importa muito!
-</p>
-
-  <section id="depoisPeixinhos">
-    <p><strong>Como você está se sentindo depois de ouvir a história?</strong></p>
-
-    <div class="escalaVotos">
-      <img src="assets/imagens/rosto1.jpg">
-      <img src="assets/imagens/rosto2.jpg">
-      <img src="assets/imagens/rosto3.jpg">
-      <img src="assets/imagens/rosto4.jpg">
-      <img src="assets/imagens/rosto5.jpg">
-      <img src="assets/imagens/rosto6.jpg">
-    </div>
-  </section>
-</section>
 
 <section class="podio">
 
-  <h2>Qual é sua história favorita?</h2>
+  <h2>Qual é seu personagem favorito?</h2>
 
   <div class="selecaoPodio">
 
     <label>🥇 Primeiro lugar:</label>
     <select id="primeiro">
       <option value="">Selecione</option>
-      <option>Te Amo Pra Sempre, Pretinho</option>
-      <option>A Nota 10</option>
-      <option>Os Peixinhos</option>
+      <option>Pretinho</option>
+      <option>Pedrinho</option>
+      <option>Jeremias</option>
     </select>
 
     <label>🥈 Segundo lugar:</label>
     <select id="segundo">
       <option value="">Selecione</option>
-      <option>Te Amo Pra Sempre, Pretinho</option>
-      <option>A Nota 10</option>
-      <option>Os Peixinhos</option>
+      <option>Pretinho</option>
+      <option>Pedrinho</option>
+      <option>Jeremias</option>
     </select>
 
     <label>🥉 Terceiro lugar:</label>
     <select id="terceiro">
       <option value="">Selecione</option>
-      <option>Te Amo Pra Sempre, Pretinho</option>
-      <option>A Nota 10</option>
-      <option>Os Peixinhos</option>
+      <option>Pretinho</option>
+      <option>Pedrinho</option>
+      <option>Jeremias</option>
     </select>
 
   </div>
@@ -725,6 +423,70 @@ function verPodio() {
 
     div_mensagem.innerHTML = resultado
   }
+}
+
+
+let emocaoAntes = null;
+let emocaoDepois = null;
+
+function votarAntes(historia, emocao) {
+    emocaoAntes = emocao;
+    console.log("Emoção antes:", emocaoAntes);
+}
+
+function votarDepois(historia, emocao) {
+    emocaoDepois = emocao;
+    console.log("Emoção depois:", emocaoDepois);
+}
+
+function enviarVoto() {
+
+    if (!sessionStorage.ID_USUARIO) {
+        alert("Usuário não logado");
+        return;
+    }
+
+    // ✔️ VALIDAÇÃO (AQUI É O ALERT QUE VOCÊ QUER)
+    if (emocaoAntes == null || emocaoDepois == null) {
+        alert("Vote antes de enviar 🙂");
+        return;
+    }
+
+    console.log("Antes:", emocaoAntes);
+    console.log("Depois:", emocaoDepois);
+
+    fetch("http://localhost:3333/voto/registrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emocaoAntes: emocaoAntes,
+            emocaoDepois: emocaoDepois,
+            idUsuario: sessionStorage.ID_USUARIO,
+            idHistoria: 1
+        })
+    })
+    .then(function(resposta) {
+        console.log("Resposta recebida");
+        return resposta.text();
+    })
+    .then(function(texto) {
+
+        console.log(texto);
+
+        // ✔️ ALERT DE SUCESSO
+        alert("Voto enviado com sucesso 👍");
+
+        // opcional: resetar votos
+        emocaoAntes = null;
+        emocaoDepois = null;
+
+    })
+    .catch(function(erro) {
+        console.log(erro);
+        alert("Erro ao enviar voto");
+    });
 }
 </script>
 
