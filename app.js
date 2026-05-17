@@ -6,7 +6,7 @@ const path = require("path");
 
 const app = express();
 
-// DEBUG (pode remover depois)
+
 console.log("DB_USER:", process.env.DB_USER);
 console.log("DB_PASSWORD:", process.env.DB_PASSWORD);
 
@@ -34,3 +34,4 @@ const PORT = process.env.APP_PORT || 3333;
 app.listen(PORT, function () {
     console.log(`Servidor Corpo & Mente rodando em http://localhost:${PORT}`);
 });
+

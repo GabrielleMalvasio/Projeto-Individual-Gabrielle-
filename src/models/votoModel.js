@@ -1,6 +1,9 @@
 var database = require("../database/config");
 
+
+
 // REGISTRAR VOTO
+
 function registrar(
     fkUsuario,
     fkHistoria,
@@ -32,52 +35,117 @@ function registrar(
     return database.executar(instrucaoSql);
 }
 
-// DASHBOARD
+
+
+
+// KPI VARIAÇÃO
+
 function buscarVariacao() {
 
     var instrucaoSql = `
 
-    SELECT
+        SELECT
 
-        CASE
+            CASE
 
-            WHEN emocao_depois < emocao_antes
-            THEN 'Melhoraram'
+                WHEN emocao_depois < emocao_antes
+                THEN 'Melhoraram'
 
-            WHEN emocao_depois > emocao_antes
-            THEN 'Pioraram'
+                WHEN emocao_depois > emocao_antes
+                THEN 'Pioraram'
 
-            ELSE 'Iguais'
+                ELSE 'Iguais'
 
-        END AS variacao,
+            END AS variacao,
 
-        COUNT(*) AS total
+            COUNT(*) AS total
 
-    FROM voto
+        FROM voto
 
-    GROUP BY variacao;
+        GROUP BY variacao;
 
-`;
-
-    return database.executar(instrucaoSql);
-}
-
-
-
-function mediasEmocao() {
-
-    var instrucaoSql = `
-        SELECT 
-            AVG(emocao_antes) AS mediaAntes,
-            AVG(emocao_depois) AS mediaDepois
-        FROM voto;
     `;
 
+    console.log(instrucaoSql);
+
     return database.executar(instrucaoSql);
 }
+
+
+
+
+
+function buscarEmocoesAntes() {
+
+    var instrucaoSql = `
+
+        SELECT
+            emocao_antes,
+            COUNT(*) AS total
+
+        FROM voto
+
+        GROUP BY emocao_antes
+
+        ORDER BY emocao_antes;
+
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+
+
+
+
+function buscarEmocoesDepois() {
+
+    var instrucaoSql = `
+
+        SELECT
+            emocao_depois,
+            COUNT(*) AS total
+
+        FROM voto
+
+        GROUP BY emocao_depois
+
+        ORDER BY emocao_depois;
+
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+
+
+
+
+function buscarTotalCriancas() {
+
+    var instrucaoSql = `
+
+        SELECT
+            COUNT(*) AS totalCriancas
+        FROM crianca;
+
+    `;
+
+    console.log(instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
+
 
 module.exports = {
     registrar,
     buscarVariacao,
-    mediasEmocao
+    buscarEmocoesAntes,
+    buscarEmocoesDepois,
+    buscarTotalCriancas
 };

@@ -53,43 +53,47 @@ para acompanhar emoções antes e depois da histórias.
 
 <section class="cardsCadastro">
 
-<div class="cardCadastro">
+    <div class="cardCadastro">
 
-<h3>Responsável</h3>
+        <h3>Responsável</h3>
 
-<input type="text" id="nome_input" placeholder="Nome">
-<input type="text" id="sobrenome_input" placeholder="Sobrenome">
-<input type="email" id="email_input" placeholder="E-mail">
+        <input type="text" id="nome_input" placeholder="Nome">
+        <input type="text" id="sobrenome_input" placeholder="Sobrenome">
+        <input type="email" id="email_input" placeholder="E-mail">
 
-<label>Data de nascimento</label>
-<input type="date" id="dataNascimento_input">
+        <input type="text" id="pais_input" placeholder="País">
+        <input type="text" id="estado_input" placeholder="Estado">
+        <input type="text" id="cidade_input" placeholder="Cidade">
 
-</div>
+    </div>
 
 
-<div class="cardCadastro">
+    <div class="cardCadastro">
 
-<h3>Criança</h3>
+        <h3>Criança</h3>
 
-<input type="text"
-id="nomeCrianca_input"
-placeholder="Nome da criança">
-</div>
+        <input type="text" id="nomeCrianca_input" placeholder="Nome da criança">
 
-<div class="cardCadastro">
+        <label>Data de nascimento</label>
+        <input type="date" id="dataNascimentoCrianca_input">
 
-<h3>Segurança</h3>
+    </div>
 
-<input type="password" id="senha_input" placeholder="Crie uma senha">
 
-<p class="textoCadastro">
-Use no mínimo 8 caracteres com letra maiúscula,
-minúscula, número e símbolo.
-</p>
+    <div class="cardCadastro">
 
-<button onclick="cadastrar()">Criar Conta</button>
+        <h3>Segurança</h3>
 
-</div>
+        <input type="password" id="senha_input" placeholder="Crie uma senha">
+
+        <p class="textoCadastro">
+            Use no mínimo 8 caracteres com letra maiúscula,
+            minúscula, número e símbolo.
+        </p>
+
+        <button onclick="cadastrar()">Criar Conta</button>
+
+    </div>
 
 </section>
 
@@ -123,24 +127,64 @@ function cadastrar() {
 
     var nome = nome_input.value;
     var sobrenome = sobrenome_input.value;
-    var dataNascimento = dataNascimento_input.value;
-    var email = email_input.value;
-    var senha = senha_input.value;
-    var nomeCrianca = nomeCrianca_input.value;
 
-    if (
+    //Validar email
+    var email = email_input.value;
+        if (!email.includes("@")) {
+
+            alert("O email precisa conter @");
+
+        return false;
+        }
+
+    var pais = pais_input.value;
+    var estado = estado_input.value;
+    var cidade = cidade_input.value;
+
+    var nomeCrianca = nomeCrianca_input.value;
+    var dataNascimentoCrianca = dataNascimentoCrianca_input.value;
+
+    var senha = senha_input.value;
+
+
+    // VALIDAÇÃO SENHA
+
+    let caracteresEspeciais = "!@#$%&*";
+
+    let temEspecial = false;
+
+    for (let i = 0; i < senha.length; i++) {
+
+        let caractere = senha[i];
+
+        if (caracteresEspeciais.includes(caractere)) {
+            temEspecial = true;
+        }
+    }
+
+    if (!temEspecial) {
+
+        alert("A senha precisa ter um caractere especial");
+
+        return false;
+    }
+
+
+   if (
     nome == "" ||
     sobrenome == "" ||
-    dataNascimento == "" ||
     email == "" ||
-    senha == ""
+    senha == "" ||
+    pais == "" ||
+    estado == "" ||
+    cidade == ""
 ) {
     alert("Preencha os dados do responsável");
     return false;
 }
 
-if (nomeCrianca == "") {
-    alert("Preencha o nome da criança");
+if (nomeCrianca == "" || dataNascimentoCrianca == "") {
+    alert("Preencha os dados da criança");
     return false;
 }
 
@@ -152,10 +196,15 @@ fetch("http://localhost:3333/usuarios/cadastrar", {
     body: JSON.stringify({
         nomeServer: nome,
         sobrenomeServer: sobrenome,
-        dataNascimentoServer: dataNascimento,
         emailServer: email,
         senhaServer: senha,
-        nomeCriancaServer: nomeCrianca
+
+        paisServer: pais,
+        estadoServer: estado,
+        cidadeServer: cidade,
+
+        nomeCriancaServer: nomeCrianca,
+        dataNascimentoCriancaServer: dataNascimentoCrianca
     })
 })
 

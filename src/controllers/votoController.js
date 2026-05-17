@@ -1,11 +1,14 @@
 var votoModel = require("../models/votoModel");
 
 
+
 // REGISTRAR VOTO
+
 function registrar(req, res) {
 
     var emocaoAntes = req.body.emocaoAntes;
     var emocaoDepois = req.body.emocaoDepois;
+
     var fkUsuario = req.body.idUsuario;
     var fkHistoria = req.body.idHistoria;
 
@@ -50,35 +53,96 @@ function registrar(req, res) {
 
 }
 
-// DASHBOARD
+
+
+// KPI VARIAÇÃO
+
 function variacao(req, res) {
 
     votoModel.buscarVariacao()
-        .then(function (resultado) {
-            res.json(resultado);
-        })
-        .catch(function (erro) {
-            console.log("Erro dashboard:", erro);
-            res.status(500).send("Erro ao buscar dados");
-        });
+
+    .then(function (resultado) {
+
+        res.json(resultado);
+
+    })
+
+    .catch(function (erro) {
+
+        console.log("Erro dashboard:", erro);
+        res.status(500).send("Erro ao buscar dados");
+
+    });
 }
 
 
 
-function medias(req, res) {
 
-    votoModel.mediasEmocao()
-        .then(function (resultado) {
-            res.json(resultado);
-        })
-        .catch(function (erro) {
-            console.log("Erro medias:", erro);
-            res.status(500).send("Erro ao buscar médias");
-        });
+function emocoesAntes(req, res) {
+
+    votoModel.buscarEmocoesAntes()
+
+    .then(function (resultado) {
+
+        res.json(resultado);
+
+    })
+
+    .catch(function (erro) {
+
+        console.log("Erro emoções antes:", erro);
+        res.status(500).send("Erro ao buscar emoções");
+
+    });
 }
+
+
+
+
+function emocoesDepois(req, res) {
+
+    votoModel.buscarEmocoesDepois()
+
+    .then(function (resultado) {
+
+        res.json(resultado);
+
+    })
+
+    .catch(function (erro) {
+
+        console.log("Erro emoções depois:", erro);
+        res.status(500).send("Erro ao buscar emoções");
+
+    });
+}
+
+
+
+
+function totalCriancas(req, res) {
+
+    votoModel.buscarTotalCriancas()
+
+    .then(function (resultado) {
+
+        res.json(resultado);
+
+    })
+
+    .catch(function (erro) {
+
+        console.log("Erro total crianças:", erro);
+        res.status(500).send("Erro ao buscar total de crianças");
+
+    });
+}
+
 
 module.exports = {
     registrar,
     variacao,
-    medias
+    emocoesAntes,
+    emocoesDepois,
+    totalCriancas
 };

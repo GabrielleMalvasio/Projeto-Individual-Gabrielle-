@@ -447,6 +447,14 @@ text-align:center;
 margin-bottom:10px;
 }
 
+.cardsCadastro {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
 
 /* LOGIN */
 

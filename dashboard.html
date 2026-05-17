@@ -96,6 +96,11 @@
         </div>
 
         <div class="cardKpiDashboard">
+        <h2 class="numeroKpiDashboard" id="kpiCriancas">0</h2>
+        <p class="textoKpiDashboard">Crianças cadastradas</p>
+        </div>
+
+        <div class="cardKpiDashboard">
             <h2 class="numeroKpiDashboard" id="kpiMelhoraram">0</h2>
             <p class="textoKpiDashboard">Melhoraram</p>
         </div>
@@ -115,6 +120,13 @@
             <p class="textoKpiDashboard">Melhora emocional</p>
         </div>
 
+        <div class="cardKpiDashboard">
+            <h2 class="numeroKpiDashboard" id="kpiMediaVotos">0</h2>
+            <p class="textoKpiDashboard">Média de votos por criança</p>
+        </div>
+
+        
+
     </section>
 
 </section>
@@ -123,6 +135,7 @@
 <script>
 
 if (!sessionStorage.ID_USUARIO) {
+
     alert("Você precisa estar logado para acessar o dashboard.");
     window.location = "login.html";
 
@@ -131,56 +144,110 @@ if (!sessionStorage.ID_USUARIO) {
 console.log("Dashboard rodando");
 
 function sairConta() {
+
     sessionStorage.clear();
     alert("Você saiu da conta");
     window.location = "login.html";
+
 }
 
 window.onload = function () {
 
+    fetch("http://localhost:3333/voto/totalCriancas")
+    .then(res => res.json())
+    .then(dados => {
+
+        let totalCriancas = dados[0].totalCriancas;
+
+        document.getElementById("kpiCriancas").innerHTML =
+            totalCriancas;
+
+    })
+
+    .catch(function (erro) {
+
+        console.log("Erro KPI crianças:", erro);
+
+    });
+
     fetch("http://localhost:3333/voto/variacao")
-        .then(res => res.json())
-        .then(dados => {
 
-            let melhoraram = 0;
-            let pioraram = 0;
-            let iguais = 0;
+    .then(res => res.json())
 
-            for (let i = 0; i < dados.length; i++) {
+    .then(dados => {
 
-                let variacao = dados[i].variacao;
-                let total = Number(dados[i].total);
+        let melhoraram = 0;
+        let pioraram = 0;
+        let iguais = 0;
 
-                if (variacao == "Melhoraram") {
-                    melhoraram = total;
-                } else if (variacao == "Pioraram") {
-                    pioraram = total;
-                } else {
-                    iguais = total;
-                }
+        for (let i = 0; i < dados.length; i++) {
+
+            let variacao = dados[i].variacao;
+            let total = Number(dados[i].total);
+
+            if (variacao == "Melhoraram") {
+
+                melhoraram = total;
+
+            } else if (variacao == "Pioraram") {
+
+                pioraram = total;
+
+            } else {
+
+                iguais = total;
+
             }
+        }
 
-            let totalVotos = melhoraram + pioraram + iguais;
+        let totalVotos = melhoraram + pioraram + iguais;
 
-            document.getElementById("kpiTotal").innerHTML = totalVotos;
-            document.getElementById("kpiMelhoraram").innerHTML = melhoraram;
-            document.getElementById("kpiPioraram").innerHTML = pioraram;
-            document.getElementById("kpiIguais").innerHTML = iguais;
+        document.getElementById("kpiTotal").innerHTML = totalVotos;
 
-            // KPI melhora emocional
-            let melhoria = 0;
+        document.getElementById("kpiMelhoraram").innerHTML = melhoraram;
 
-            if (totalVotos > 0) {
-                melhoria = ((melhoraram - pioraram) / totalVotos) * 100;
-            }
+        document.getElementById("kpiPioraram").innerHTML = pioraram;
 
-            document.getElementById("kpiMelhoria").innerHTML =
-                (melhoria >= 0 ? "+" : "") + melhoria.toFixed(1) + "%";
+        document.getElementById("kpiIguais").innerHTML = iguais;
 
-        })
-        .catch(erro => {
-            console.log("ERRO DASH:", erro);
-        });
+
+        // KPI melhora emocional
+
+        let melhoria = 0;
+
+        if (totalVotos > 0) {
+
+            melhoria = ((melhoraram - pioraram) / totalVotos) * 100;
+
+        }
+
+        document.getElementById("kpiMelhoria").innerHTML =
+            (melhoria >= 0 ? "+" : "") + melhoria.toFixed(1) + "%";
+
+
+        
+        // média de votos por criança
+
+        let totalCriancas = 4;
+
+        let mediaVotos = 0;
+
+        if (totalCriancas > 0) {
+
+            mediaVotos = totalVotos / totalCriancas;
+
+        }
+
+        document.getElementById("kpiMediaVotos").innerHTML =
+            mediaVotos.toFixed(1);
+
+    })
+
+    .catch(erro => {
+
+        console.log("ERRO DASH:", erro);
+
+    });
 
 };
 

@@ -112,94 +112,191 @@ function sairConta() {
 
 window.onload = function () {
 
-    
-    fetch("http://localhost:3333/voto/variacao")
-        .then(res => res.json())
-        .then(dados => {
+    fetch("http://localhost:3333/voto/emocoesAntes")
 
-            let melhoraram = 0;
-            let pioraram = 0;
-            let iguais = 0;
+    .then(res => res.json())
 
-            for (let i = 0; i < dados.length; i++) {
+    .then(dados => {
 
-                let variacao = dados[i].variacao;
-                let total = Number(dados[i].total);
+        let labels = [];
+        let valores = [];
 
-                if (variacao == "Melhoraram") {
-                    melhoraram = total;
-                } else if (variacao == "Pioraram") {
-                    pioraram = total;
-                } else {
-                    iguais = total;
-                }
+        for (let i = 0; i < dados.length; i++) {
+
+            let emocao = dados[i].emocao_antes;
+
+            if (emocao == 1) {
+
+                labels.push("😁 Muito feliz");
+
+            } else if (emocao == 2) {
+
+                labels.push("🙂 Feliz");
+
+            } else if (emocao == 3) {
+
+                labels.push("😐 Neutro");
+
+            } else if (emocao == 4) {
+
+                labels.push("🙁 Pouco triste");
+
+            } else if (emocao == 5) {
+
+                labels.push("😢 Triste");
+
+            } else if (emocao == 6) {
+
+                labels.push("😭 Muito triste");
+
             }
 
-            const ctx = document.getElementById("graficoVariacao");
+            valores.push(dados[i].total);
+        }
 
-            new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: ["Melhoraram 😄", "Pioraram 😢", "Iguais 😐"],
-                    datasets: [{
-                        label: "Distribuição emocional",
-                        data: [melhoraram, pioraram, iguais],
-                        backgroundColor: ["#66cc99", "#ff6666", "#cccccc"]
-                    }]
+        const ctx = document.getElementById("graficoVariacao");
+
+        new Chart(ctx, {
+
+            type: "bar",
+
+            data: {
+
+                labels: labels,
+
+                datasets: [{
+
+                    label: "Quantidade de votos",
+
+                    data: valores,
+
+                    backgroundColor: [
+                        "#4CAF50",
+                        "#8BC34A",
+                        "#FFC107",
+                        "#FF9800",
+                        "#F44336",
+                        "#B71C1C"
+                    ]
+
+                }]
+            },
+
+            options: {
+
+                indexAxis: 'y',
+
+                responsive: true,
+
+                plugins: {
+
+                    title: {
+
+                        display: true,
+
+                        text: "Emoções antes da leitura"
+
+                    }
                 },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: "Distribuição emocional"
-                        }
+
+                scales: {
+
+                    x: {
+
+                        beginAtZero: true
+
                     }
                 }
-            });
-
-        });
-
-    
-    fetch("http://localhost:3333/voto/medias")
-        .then(res => res.json())
-        .then(dados => {
-
-            if (dados.length > 0) {
-
-                let mediaAntes = Number(dados[0].mediaAntes || 0);
-                let mediaDepois = Number(dados[0].mediaDepois || 0);
-
-                const ctxMedias = document.getElementById("graficoMedias");
-
-                new Chart(ctxMedias, {
-                    type: "bar",
-                    data: {
-                        labels: ["Antes 😐", "Depois 🙂"],
-                        datasets: [{
-                            label: "Média emocional",
-                            data: [mediaAntes, mediaDepois],
-                            backgroundColor: ["#ffcc66", "#66cc99"]
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: "Média das emoções"
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                max: 6
-                            }
-                        }
-                    }
-                });
             }
         });
+
+    });
+
+
+    
+    fetch("http://localhost:3333/voto/emocoesDepois")
+.then(res => res.json())
+.then(dados => {
+
+    let labels = [];
+    let valores = [];
+
+    for (let i = 0; i < dados.length; i++) {
+
+        let emocao = dados[i].emocao_depois;
+
+        if (emocao == 1) {
+
+    labels.push("😁 Muito feliz");
+
+} else if (emocao == 2) {
+
+    labels.push("🙂 Feliz");
+
+} else if (emocao == 3) {
+
+    labels.push("😐 Neutro");
+
+} else if (emocao == 4) {
+
+    labels.push("🙁 Pouco triste");
+
+} else if (emocao == 5) {
+
+    labels.push("😢 Triste");
+
+} else if (emocao == 6) {
+
+    labels.push("😭 Muito triste");
+
+}
+
+        valores.push(dados[i].total);
+    }
+
+    const ctx = document.getElementById("graficoMedias");
+
+    new Chart(ctx, {
+        type: "bar",
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                label: "Quantidade de votos",
+                data: valores,
+                backgroundColor: [
+                 "#4CAF50",
+                 "#8BC34A",
+                "#FFC107",
+                "#FF9800",
+                "#F44336",
+                "#B71C1C"
+]
+            }]
+        },
+
+        options: {
+            indexAxis: 'y',
+
+            responsive: true,
+
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Emoções mais escolhidas depois da leitura"
+                }
+            },
+
+            scales: {
+                x: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+});
 
 };
 

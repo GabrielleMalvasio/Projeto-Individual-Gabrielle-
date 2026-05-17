@@ -1,46 +1,45 @@
 var database = require("../database/config");
 
-// CADASTRO
-function cadastrar(
-    nome,
-    sobrenome,
-    dataNascimento,
-    email,
-    senha,
-    nomeCrianca
-) {
+
+function cadastrar(nome, sobrenome, email, senha) {
 
     var instrucaoSql = `
-        INSERT INTO usuario
-        (
-            nome,
-            sobrenome,
-            dataNascimento,
-            email,
-            senha,
-            nomeCrianca
-        )
-        VALUES
-        (
-            '${nome}',
-            '${sobrenome}',
-            '${dataNascimento}',
-            '${email}',
-            '${senha}',
-            '${nomeCrianca}'
-        );
+        INSERT INTO usuario (nome, sobrenome, email, senha)
+        VALUES ('${nome}', '${sobrenome}', '${email}', '${senha}');
     `;
-
-    console.log(instrucaoSql);
 
     return database.executar(instrucaoSql);
 }
 
-// LOGIN
+
+function cadastrarEndereco(idUsuario, pais, estado, cidade) {
+
+    var instrucaoSql = `
+        INSERT INTO endereco (fk_usuario, pais, estado, cidade)
+        VALUES (${idUsuario}, '${pais}', '${estado}', '${cidade}');
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+
+function cadastrarCrianca(idUsuario, nomeCrianca, dataNascimento) {
+
+    var instrucaoSql = `
+        INSERT INTO crianca (nome, data_nascimento, fk_usuario)
+        VALUES ('${nomeCrianca}', '${dataNascimento}', ${idUsuario});
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+
+   
+
 function autenticar(email, senha) {
 
     var instrucaoSql = `
-        SELECT id, nome, email, nomeCrianca
+        SELECT id, nome, email
         FROM usuario
         WHERE email = '${email}'
         AND senha = '${senha}';
@@ -51,5 +50,7 @@ function autenticar(email, senha) {
 
 module.exports = {
     cadastrar,
+    cadastrarEndereco,
+    cadastrarCrianca,
     autenticar
 };

@@ -1,4 +1,4 @@
-/* DASHBOARD */
+
 
 .kpisDashboard{
 
@@ -6,7 +6,7 @@ display:flex;
 gap:20px;
 flex-wrap:wrap;
 margin-bottom:40px;
-justify-content:center;
+justify-content:flex-start;
 
 }
 
@@ -30,7 +30,7 @@ margin-bottom:10px;
 }
 
 .cardKpiDashboard {
-    background:#FAFAF8;
+    background:#cdedf1;
     width:220px;
     padding:25px;
     border-radius:18px;
