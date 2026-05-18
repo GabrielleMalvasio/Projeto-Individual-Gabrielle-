@@ -23,7 +23,8 @@ Permitir cadastro de usuários e crianças
 Registrar emoções antes e depois da leitura das histórias
 Gerar dashboards com análises emocionais das votações
 Relacionar dados por faixa etária e sexo biológico
-🔬 Sobre o estudo científico
+
+Sobre o estudo científico
 
 O estudo utilizado como base para o projeto foi realizado pelo:
 
