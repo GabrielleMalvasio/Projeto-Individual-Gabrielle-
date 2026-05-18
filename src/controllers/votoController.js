@@ -17,6 +17,7 @@ function registrar(req, res) {
     console.log("Depois:", emocaoDepois);
     console.log("Usuário:", fkUsuario);
     console.log("História:", fkHistoria);
+    console.log("BODY RECEBIDO:", req.body);
 
     if (
         emocaoAntes == null ||
